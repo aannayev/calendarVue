@@ -1,15 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <div class="language-buttons">
+    <button @click="changeLanguage('en')">English</button>
+    <button @click="changeLanguage('ru')">Русский</button>
+  </div>
+  <CalendarVue
+    :initial-date="'2024-03-20'"
+    :language="currentLanguage"
+    @date-selected="handleDateSelected"
+  />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CalendarVue from './components/CalendarVue.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CalendarVue
+  },
+  data() {
+    return {
+      currentLanguage: 'en'
+    };
+  },
+  methods: {
+    handleDateSelected(selectedDate) {
+      console.log('Selected Date:', selectedDate);
+
+    },
+    changeLanguage(language) {
+      this.currentLanguage = language;
+    }
   }
 }
 </script>
@@ -23,4 +45,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>
+</style>./components/CalendarVue.vue
